@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@100;200;300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:wght@100;300;400;700;900&display=swap');
+
+.story-wrap {
+  padding: 3rem;
+  background-color: #eee;
+  @media (max-width: 56.25em){ //width < 900px
+    padding: 0;
+  }
+  &-AppBar {
+    padding: 0;
+    height: 1500px;
+  }
+}
+.buttons-stories {
+  text-align: center;
+  & div button {
+    margin: 1rem;
+  }
+  & div p {
+    margin: 1rem;
+    font-size: 1.4rem;
+  }
+}
+
+.navigation-stories {
+  text-align: center;
+  & div .navigation__link {
+    margin: 1rem;
+  }
+  & div p {
+    margin: 1rem;
+    font-size: 1.4rem;
+  }
+}
+
+.animation-all-wrap {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.animation-div {
+  height: 10rem;
+  width: 10rem;
+  background-color: #8E3032;
+  color: #fff;
+  text-align: center;
+  margin: 3rem;
+}
+
+.cards-swift-stories {
+  &-buttons {
+    span {
+      font-size: 3rem;
+      padding: 6rem;
+      cursor: pointer;
+    }
+  }
+}
