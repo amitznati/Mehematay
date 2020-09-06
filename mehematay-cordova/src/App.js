@@ -4,8 +4,7 @@ import {CssBaseLine, ThemeProvider} from 'mehematay-ui-library';
 
 import {getStoreInstance, getInstance} from './sdk';
 import Layout from './layout';
-import Spinner from './commonComponents/Spinner';
-
+import Spinner from './layout/Spinner';
 
 const store = getStoreInstance();
 if (process.env && process.env.NODE_ENV) {

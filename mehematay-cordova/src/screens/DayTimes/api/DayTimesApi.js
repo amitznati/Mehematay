@@ -1,9 +1,9 @@
-// import * as Location from 'expo-location';
 import moment from 'moment-timezone';
 import Hebcal from 'hebcal';
+import { calendarConstants } from 'mehematay-ui-library';
 import BaseApi from '../../../sdk/BaseApi';
 import selectors from './DayTimesSelectors';
-import {monthsArray, monthsArrayHe, heDaysLong} from '../../../commonComponents/constants';
+
 
 export const ActionTypes = {
   LOAD_SUN_TIMES: 'LOAD_SUN_TIMES',
@@ -12,7 +12,7 @@ export const ActionTypes = {
   LOAD_CURRENT_LOCATION_TIMES_ERROR: 'LOAD_CURRENT_LOCATION_TIMES_ERROR',
   SET_NAVIGATION_DATE: 'SET_NAVIGATION_DATE',
 };
-
+const {heDaysLong, monthsArrayHe, monthsArrayTranslate} = calendarConstants;
 const dayTimesTemplateObj = [
   {key: 'dayHour', title: 'שעה זמנית הגר"א'},
   {key: 'alotHashahar90', title: 'עלות השחר 90 דקות'},
@@ -92,7 +92,7 @@ export default class DayTimesApi extends BaseApi {
   };
 
   getSelectedDateFormats = (
-    selectedDate = this.APIsInstances.CalenderApi.getSelectedDateSelector(),
+    selectedDate = this.getSelectedDateSelector(),
     isShort = false,
   ) => {
     const heDate = new Hebcal.HDate(selectedDate);
@@ -128,7 +128,7 @@ export default class DayTimesApi extends BaseApi {
     }
     return {
       formattedDate: `${selectedDate.getDate()} ${
-        monthsArray[selectedDate.getMonth()]
+          monthsArrayTranslate[selectedDate.getMonth()]
       } ${isShort ? '' : selectedDate.getFullYear()}`,
       formattedDateHe: `יום ${heDaysLong[selectedDate.getDay()]}, ${Hebcal.gematriya(heDate.day)} ${
         monthsArrayHe[heDate.month - 1]
@@ -148,7 +148,7 @@ export default class DayTimesApi extends BaseApi {
   };
 
   getNextEvents = () => {
-    const selectedDate = this.APIsInstances.CalenderApi.getSelectedDateSelector();
+    const selectedDate = this.getSelectedDateSelector();
     const selectedLocation = this.getSelectedLocationSelector();
     const events = [];
     const nextData = new Date(selectedDate);

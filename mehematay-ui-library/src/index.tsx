@@ -1,5 +1,6 @@
 import * as hooks from './hooks';
 import * as MaterialIcons from '@material-ui/icons';
+import * as calendarConstants from './components/Calendar/constants';
 export { default as Button } from './components/Button/Button';
 export { default as Calendar } from './components/Calendar/Calendar';
 export { default as Navigation } from './components/Navigation/Navigation';
@@ -14,5 +15,6 @@ export { default as DayTimeItem } from './components/DayTimeItem/DayTimeItem';
 export { default as SearchLocation } from './components/SearchLocation/SearchLocation';
 export { default as SearchInput } from './components/SearchInput/SearchInput';
 export { default as SelectedDayInfo } from './components/SelectedDayInfo/SelectedDayInfo';
+export { default as Spinner } from './components/Spinner/Spinner';
 export * from '@material-ui/core';
-export { hooks, MaterialIcons };
+export { hooks, MaterialIcons, calendarConstants };
