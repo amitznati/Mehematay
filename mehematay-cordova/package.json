@@ -41,7 +41,7 @@
     ]
   },
   "homepage": "./",
-  "displayName": "mehematay",
+  "displayName": "Mehematay",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "main": "index.js",
   "keywords": [
