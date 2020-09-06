@@ -163,16 +163,16 @@ export default class DayTimesApi extends BaseApi {
     };
     const getEvent = (holiday, isJerusalem) => {
       const hDate = holiday.date;
-      const dayHourRatio =
-        (hDate.sunset() - hDate.sunrise()) / 1000 / 60 / 60 / 12;
+      const dayHourRatio = (d) =>
+        (d.sunset() - d.sunrise()) / 1000 / 60 / 60 / 12;
       return {
         title: getEventTitle(holiday),
-        date: this.getFormattedDateForEvent(new Date(hDate.greg())),
+        date: this.getFormattedDateForEvent(hDate.greg()),
         enter: this.getDateTime(
-          this.addMinutes(hDate.prev().sunset(), isJerusalem ? -40 : -20),
+          this.addMinutes(hDate.prev().sunset(), (isJerusalem ? -40 : -20) * dayHourRatio(hDate.prev())),
         ),
         out: this.getDateTime(
-          this.addMinutes(hDate.sunset(), 40 * dayHourRatio),
+          this.addMinutes(hDate.sunset(), 40 * dayHourRatio(hDate)),
         ),
       };
     };
@@ -208,7 +208,6 @@ export default class DayTimesApi extends BaseApi {
 
   onSearchMyLocation = () => {
     const successCallback = (location) => {
-      localStorage.setItem('prevLocation', JSON.stringify(location));
       this.onSelectLocation(location);
     };
     const errorCallback = (error) => console.log(error);
@@ -254,6 +253,7 @@ export default class DayTimesApi extends BaseApi {
   }
 
   setSelectedLocation = selectedLocation => {
+    localStorage.setItem('prevLocation', JSON.stringify(selectedLocation));
     this.dispatchStoreAction({
       type: ActionTypes.SET_SELECTED_LOCATION,
       payload: {selectedLocation},

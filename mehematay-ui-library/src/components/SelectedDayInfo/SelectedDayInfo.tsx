@@ -25,19 +25,25 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     padding: {
       padding: '2rem'
+    },
+    location: {
+      fontSize: '2rem'
     }
   })
 );
 
 const SelectedDayInfo: React.FC<SelectedDayInfoProps> = ({
   selectedDateFormatted,
-  nextEvents = []
+  nextEvents = [],
+  selectedLocation
 }) => {
   const classes = useStyles();
   return (
     <Paper>
       <div className={classes.root}>
-        <p>זמני היום עבור:</p>
+        <p>
+          זמני היום עבור: <span className={classes.location}>{selectedLocation?.formattedName}</span>
+        </p>
         {selectedDateFormatted.event && (
           <p className={classes.heEvent}>{selectedDateFormatted.event}</p>
         )}
