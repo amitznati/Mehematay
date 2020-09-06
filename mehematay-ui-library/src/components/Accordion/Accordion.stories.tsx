@@ -7,8 +7,16 @@ export default {
 };
 
 export const WithBar = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const toggleAccordion = (): void => {
+    setIsOpen(!isOpen);
+  };
   return (
-    <Accordion header="Accordion Header">
+    <Accordion
+      header="Accordion Header"
+      toggleAccordion={toggleAccordion}
+      isOpen={isOpen}
+    >
       Lorem ipsum dolor sit amet, consectetur adipisicing elit.
       <br />
       A architecto dignissimos eum,
@@ -47,6 +55,10 @@ export const WithBar = () => {
 };
 
 export const dynamicHeight = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const toggleAccordion = (): void => {
+    setIsOpen(!isOpen);
+  };
   const dammyData = [
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
     'A architecto dignissimos eum,',
@@ -61,7 +73,11 @@ export const dynamicHeight = () => {
     setItems([...items, ...dammyData]);
   };
   return (
-    <Accordion header="Accordion Header">
+    <Accordion
+      toggleAccordion={toggleAccordion}
+      isOpen={isOpen}
+      header="Accordion Header"
+    >
       {items.map((item, index) => (
         <div key={index}>{item}</div>
       ))}

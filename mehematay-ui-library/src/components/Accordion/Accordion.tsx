@@ -48,12 +48,11 @@ const StyledAccordion = styled.div`
 
 export class Accordion extends React.Component<
   AccordionProps,
-  { isOpen: boolean; contentHeight?: number }
+  { contentHeight?: number }
 > {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false,
       contentHeight: 0
     };
   }
@@ -70,15 +69,9 @@ export class Accordion extends React.Component<
     }
   }
 
-  toggleAccordion = (): void => {
-    this.setState((s) => ({
-      isOpen: !s.isOpen
-    }));
-  };
-
   render(): JSX.Element {
-    const { header, children, ...rest } = this.props;
-    const { contentHeight, isOpen } = this.state;
+    const { header, children, isOpen, toggleAccordion, ...rest } = this.props;
+    const { contentHeight } = this.state;
     return (
       <StyledAccordion
         {...{ contentHeight, isOpen }}
@@ -92,7 +85,7 @@ export class Accordion extends React.Component<
               size={40}
               iconSrc={ArrowIcon}
               // variant="secondary"
-              onClick={this.toggleAccordion}
+              onClick={toggleAccordion}
             />
           </div>
         </div>

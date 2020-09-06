@@ -67,12 +67,27 @@ const SearchLocation: React.FC<SearchLocationProps> = ({
   onSearchMyLocation
 }) => {
   const classes = useStyles();
+  const [isOpen, setIsOpen] = React.useState(false);
+  const toggleAccordion = (): void => {
+    setIsOpen(!isOpen);
+  };
+  const searchMyLocation = (): void => {
+    toggleAccordion();
+    onSearchMyLocation && onSearchMyLocation();
+  };
+  const selectLocation = (loc): void => {
+    toggleAccordion();
+    onSelectLocation && onSelectLocation(loc);
+  };
+
   return (
     <Paper>
       <Accordion
         header={
           (selectedLocation && selectedLocation.formattedName) || 'no location'
         }
+        isOpen={isOpen}
+        toggleAccordion={toggleAccordion}
       >
         <div className={classes.searchInputWrap}>
           <Fab
@@ -80,7 +95,7 @@ const SearchLocation: React.FC<SearchLocationProps> = ({
             color="secondary"
             aria-label="myLocation"
             className={classes.iconButton}
-            onClick={onSearchMyLocation}
+            onClick={searchMyLocation}
           >
             <MyLocationIcon />
           </Fab>
@@ -90,7 +105,7 @@ const SearchLocation: React.FC<SearchLocationProps> = ({
         </div>
         {searchResults.length > 0 && (
           <SearchLocationResultsList
-            onSelectLocation={onSelectLocation}
+            onSelectLocation={selectLocation}
             items={searchResults}
           />
         )}

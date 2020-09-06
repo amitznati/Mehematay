@@ -27,6 +27,7 @@ export default function DayTimesMainView({
             <Calendar
               selectedDate={selectedDate}
               onSelectDate={onDateChange}
+              autoCloseOnSelect
             />
           </Grid>
           <Grid item xs={12}>
