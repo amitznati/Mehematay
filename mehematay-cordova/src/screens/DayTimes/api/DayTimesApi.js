@@ -128,7 +128,7 @@ export default class DayTimesApi extends BaseApi {
     }
     return {
       formattedDate: `${selectedDate.getDate()} ${
-          monthsArrayTranslate[selectedDate.getMonth()]
+        monthsArrayTranslate[selectedDate.getMonth()]
       } ${isShort ? '' : selectedDate.getFullYear()}`,
       formattedDateHe: `יום ${heDaysLong[selectedDate.getDay()]}, ${Hebcal.gematriya(heDate.day)} ${
         monthsArrayHe[heDate.month - 1]
@@ -228,6 +228,7 @@ export default class DayTimesApi extends BaseApi {
   }
 
   loadSunTimesCurrentLocation = async () => {
+    this.startSpinner('loadSunTimesCurrentLocation');
     this.setSelectedDate(new Date());
     const existingLocationFromStorage = this.getExistLocationFromStorage();
     if (existingLocationFromStorage) {
@@ -235,6 +236,7 @@ export default class DayTimesApi extends BaseApi {
     } else {
       this.onSearchMyLocation();
     }
+    this.stopSpinner('loadSunTimesCurrentLocation');
   };
 
   onDateChange = async selectedDate => {

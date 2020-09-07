@@ -290,6 +290,7 @@ class Calendar extends React.Component<
         <StyledCalendarSelectedDate>
           <IconButton
             size={40}
+            variant="secondary"
             iconSrc={TodayIcon}
             onClick={this.setDateToNow}
           />

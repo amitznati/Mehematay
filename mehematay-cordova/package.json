@@ -51,6 +51,7 @@
   "license": "MIT",
   "devDependencies": {
     "cordova-android": "^9.0.0",
+    "eslint": "^6.8.0",
     "cordova-browser": "^6.0.0",
     "cordova-ios": "^6.1.1",
     "cordova-plugin-geolocation": "^4.0.2",
