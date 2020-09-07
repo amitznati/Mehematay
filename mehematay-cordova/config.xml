@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.mehematay.ui" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Mehematay</name>
+    <name>מאימתי</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        כלי עזר ליהדות ישראל
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="amitznati@gmail.com" href="https://amitznati.github.io/mehematay-git-page">
+        Amit Znati
     </author>
     <content src="index.html" />
     <access origin="*" />
