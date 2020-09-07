@@ -4,7 +4,7 @@ import * as logo from '../styles/assets/images/ic_launcher_round.png';
 import { LocationItem } from '../components/SearchLocation/SearchLocation.types';
 import Calendar from '../components/Calendar/Calendar';
 import DailyTimeLine from '../components/DailyTimeLine/DailyTimeLine';
-import { Grid } from '@material-ui/core';
+import { Grid, Container } from '@material-ui/core';
 import SelectedDayInfo from '../components/SelectedDayInfo/SelectedDayInfo';
 
 const dayTimes = JSON.parse(
@@ -115,49 +115,51 @@ export const DayTimesPage = () => {
         title="זמני היום"
         navigationLinks={navigationLinks}
       />
-      <Grid container>
-        <Grid item xs={12} md={6} lg={6}>
-          <Grid container>
-            <Grid item xs={12}>
-              <SearchLocation
-                onSearch={(): void => setSearchResults(locations)}
-                searchResults={searchResults}
-                onSelectLocation={(loc): void => setSelectedLocation(loc)}
-                selectedLocation={selectedLocation}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Calendar
-                selectedDate={selectedDate}
-                onSelectDate={setSelectedDate}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <SelectedDayInfo
-                selectedDateFormatted={{
-                  event: 'ערב שבת נחמו',
-                  formattedDate: '26 אוגוסט 2020',
-                  formattedDateHe: 'ד אלול תש"פ'
-                }}
-                nextEvents={[
-                  {
-                    title: 'שבת הקרובה: שבת נחמו',
-                    out: '18:36',
-                    enter: '19:36',
-                    date: {
-                      formattedDate: '7/29/2020',
-                      formattedDateHe: 'ט אלול תש"פ'
+      <Container maxWidth="lg" disableGutters>
+        <Grid container>
+          <Grid item xs={12} md={6} lg={6}>
+            <Grid container>
+              <Grid item xs={12}>
+                <SearchLocation
+                  onSearch={(): void => setSearchResults(locations)}
+                  searchResults={searchResults}
+                  onSelectLocation={(loc): void => setSelectedLocation(loc)}
+                  selectedLocation={selectedLocation}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Calendar
+                  selectedDate={selectedDate}
+                  onSelectDate={setSelectedDate}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <SelectedDayInfo
+                  selectedDateFormatted={{
+                    event: 'ערב שבת נחמו',
+                    formattedDate: '26 אוגוסט 2020',
+                    formattedDateHe: 'ד אלול תש"פ'
+                  }}
+                  nextEvents={[
+                    {
+                      title: 'שבת הקרובה: שבת נחמו',
+                      out: '18:36',
+                      enter: '19:36',
+                      date: {
+                        formattedDate: '7/29/2020',
+                        formattedDateHe: 'ט אלול תש"פ'
+                      }
                     }
-                  }
-                ]}
-              />
+                  ]}
+                />
+              </Grid>
             </Grid>
           </Grid>
+          <Grid item xs={12} md={6} lg={6}>
+            <DailyTimeLine dayTimes={dayTimes} />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={6} lg={6}>
-          <DailyTimeLine dayTimes={dayTimes} />
-        </Grid>
-      </Grid>
+      </Container>
     </div>
   );
 };

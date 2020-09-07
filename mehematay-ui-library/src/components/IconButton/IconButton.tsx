@@ -11,7 +11,8 @@ const getStyledIconButton = (props): string => {
   let textColor = props.textColor || getColor('white', props);
   let textColorHover = props.textColorHover || getColor('primary', props);
   let backgroundColor = props.backgroundColor || 'transparent';
-  let backgroundColorHover = props.backgroundColorHover || getColor('white', props);
+  let backgroundColorHover =
+    props.backgroundColorHover || getColor('white', props);
   if (variant) {
     switch (variant) {
       case 'primary': {
@@ -22,7 +23,7 @@ const getStyledIconButton = (props): string => {
         break;
       }
       case 'secondary': {
-        textColor = getColor('black', props);
+        textColor = getColor('white', props);
         textColorHover = getColor('secondary', props);
         backgroundColor = getColor('secondary', props);
         backgroundColorHover = getColor('white', props);

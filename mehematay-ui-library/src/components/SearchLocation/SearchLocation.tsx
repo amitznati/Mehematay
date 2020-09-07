@@ -7,6 +7,7 @@ import MyLocationIcon from '@material-ui/icons/MyLocation';
 import Accordion from '../Accordion/Accordion';
 import SearchInput from '../SearchInput/SearchInput';
 import SearchLocationResultsList from './SearchLocationResultsList';
+import IconButton from '../IconButton/IconButton';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -88,17 +89,16 @@ const SearchLocation: React.FC<SearchLocationProps> = ({
         }
         isOpen={isOpen}
         toggleAccordion={toggleAccordion}
+        headerLeft={
+          <IconButton
+            onClick={searchMyLocation}
+            size={40}
+            iconSrc={MyLocationIcon}
+            variant="secondary"
+          />
+        }
       >
         <div className={classes.searchInputWrap}>
-          <Fab
-            size="medium"
-            color="secondary"
-            aria-label="myLocation"
-            className={classes.iconButton}
-            onClick={searchMyLocation}
-          >
-            <MyLocationIcon />
-          </Fab>
           <div className={classes.searchInput}>
             <SearchInput placeholder="חיפוש לפי עיר..." onSearch={onSearch} />
           </div>

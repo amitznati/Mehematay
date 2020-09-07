@@ -1,5 +1,6 @@
 import React from 'react';
 import Hebcal from 'hebcal';
+import TodayIcon from '@material-ui/icons/Today';
 import { Month, HeDay, HeEvent, CalendarProps } from './Calendar.types';
 import { monthsArrayHe, heDaysLong, monthsArrayTranslate } from './constants';
 import CardsSwift from '../CardsSwift/CardsSwift';
@@ -7,7 +8,7 @@ import IconButton from '../IconButton/IconButton';
 
 import { ReactComponent as ArrowIcon } from '../../styles/assets/icons/arrow_forward_ios-24px.svg';
 import { ReactComponent as FastArrowIcon } from '../../styles/assets/icons/arrow_fast_forward_ios-24px.svg';
-import { ReactComponent as TargetIcon } from '../../styles/assets/icons/dot-circle-regular.svg';
+
 import {
   StyledCalendarExpandIcon,
   StyledCalendarContainer,
@@ -289,7 +290,7 @@ class Calendar extends React.Component<
         <StyledCalendarSelectedDate>
           <IconButton
             size={40}
-            iconSrc={TargetIcon}
+            iconSrc={TodayIcon}
             onClick={this.setDateToNow}
           />
           <span>{this.getSelectedDateText()}</span>

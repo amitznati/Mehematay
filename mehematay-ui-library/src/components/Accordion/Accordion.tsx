@@ -15,7 +15,7 @@ const getStyledAccordion = (props): string => {
     text-align: center;
     color: ${getColor('white', props)};
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     line-height: 1;
     position: relative;
@@ -24,7 +24,7 @@ const getStyledAccordion = (props): string => {
     background-color: ${getColor('primary', props)};
     .u-abs-center {
       ${absCenter}
-      width: 100%;
+      width: 90%;
     }
   }
   .accordion-expand-icon {
@@ -70,7 +70,14 @@ export class Accordion extends React.Component<
   }
 
   render(): JSX.Element {
-    const { header, children, isOpen, toggleAccordion, ...rest } = this.props;
+    const {
+      header,
+      children,
+      isOpen,
+      toggleAccordion,
+      headerLeft,
+      ...rest
+    } = this.props;
     const { contentHeight } = this.state;
     return (
       <StyledAccordion
@@ -80,6 +87,7 @@ export class Accordion extends React.Component<
       >
         <div className="accordion-header">
           <span className="u-abs-center">{header}</span>
+          <div>{headerLeft}</div>
           <div className="accordion-expand-icon">
             <IconButton
               size={40}

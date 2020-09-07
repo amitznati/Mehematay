@@ -42,7 +42,7 @@ body {
 
 ::selection {
   background-color: ${(props): string =>
-    props.theme.colorPrimaryLight || 'blue'};
+    props.theme.colors.secondaryLight || 'blue'};
 }
 `;
 

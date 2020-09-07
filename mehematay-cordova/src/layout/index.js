@@ -2,7 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
 import {DayTimes} from '../screens';
-import {AppBar} from 'mehematay-ui-library';
+import {AppBar, Container} from 'mehematay-ui-library';
 import * as logo from '../styles/assets/ic_launcher_round.png';
 
 const NearestPray = () => (<div>Nearest Pray</div>);
@@ -32,7 +32,9 @@ export const Index = () => {
       </nav>
       <main>
         <Switch>
-          {routes.map(route => (<Route key={route.to} exact path={route.to} component={ route.component } />))}
+          <Container maxWidth="lg" disableGutters>
+            {routes.map(route => (<Route key={route.to} exact path={route.to} component={ route.component } />))}
+          </Container>
         </Switch>
       </main>
     </Router>

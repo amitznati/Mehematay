@@ -8,7 +8,7 @@ export default class DayTimesComponent extends React.Component {
   }
   render() {
     return (
-        <DayTimesMainView {...this.props} />
+      <DayTimesMainView {...this.props} />
     );
   }
 }
