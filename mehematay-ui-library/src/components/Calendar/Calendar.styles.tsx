@@ -10,6 +10,7 @@ export const StyledCalendarContainer = styled.div`
 export const StyledCalendarSelectedDate = styled.div`
   font-size: 2rem;
   text-align: center;
+  cursor: pointer;
   color: ${(props): string => getColor('white', props)};
   display: flex;
   justify-content: space-between;

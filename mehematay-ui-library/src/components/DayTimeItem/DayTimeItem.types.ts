@@ -1,4 +1,5 @@
-export interface DayTimeItemProps {
+import React from 'react';
+export interface DayTimeItemProps extends React.HTMLProps<HTMLDivElement> {
   dayTime: {
     time: string;
     title: string;

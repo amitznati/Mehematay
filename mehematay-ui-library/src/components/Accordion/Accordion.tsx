@@ -22,9 +22,10 @@ const getStyledAccordion = (props): string => {
     padding: 2rem;
     box-shadow: 0 2px 4px rgba(0 ,0 ,0 , 0.3);
     background-color: ${getColor('primary', props)};
+    cursor: pointer;
     .u-abs-center {
       ${absCenter}
-      width: 90%;
+      width: 75%;
     }
   }
   .accordion-expand-icon {
@@ -85,7 +86,7 @@ export class Accordion extends React.Component<
         aria-expanded={isOpen}
         {...rest}
       >
-        <div className="accordion-header">
+        <div className="accordion-header" onClick={toggleAccordion}>
           <span className="u-abs-center">{header}</span>
           <div>{headerLeft}</div>
           <div className="accordion-expand-icon">

@@ -5,22 +5,23 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     dayTimeItem: {
-      margin: '2rem',
-      display: 'inline-flex',
       width: '90%',
+      display: 'inline-flex',
       justifyContent: 'flex-end',
+      alignItems: 'center',
+      fontSize: '2rem',
       borderTop: `2px solid ${theme.palette.primary.main}`
     },
     dayTimeHour: {
       backgroundColor: theme.palette.primary.main,
       borderRadius: '50px',
-      padding: '1rem 2rem',
+      padding: '.5rem 2rem',
       color: theme.palette.secondary.main,
       transform: 'translateY(-50%)'
     },
     dayTimeTitle: {
-      fontSize: '3rem',
-      margin: '0 2rem',
+      fontSize: '2.5rem',
+      margin: '0 1rem',
       color: (props: DayTimeItemProps): string =>
         props.dayTime.inDay ? theme.palette.primary.main : 'white'
     }

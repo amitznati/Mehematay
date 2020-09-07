@@ -275,10 +275,13 @@ class Calendar extends React.Component<
     return str.join(' ');
   }
 
-  setDateToNow(): void {
+  setDateToNow(e): void {
+    e.stopPropagation();
+    e.preventDefault();
     const { nowMonthIndex, heNow } = this.state;
     this.setState({
-      activeMonth: nowMonthIndex
+      activeMonth: nowMonthIndex,
+      calendarOpen: false
     });
     this.props.onSelectDate(heNow.greg());
   }
@@ -287,7 +290,7 @@ class Calendar extends React.Component<
     const { calendarOpen, activeMonth, months } = this.state;
     return (
       <StyledCalendarContainer>
-        <StyledCalendarSelectedDate>
+        <StyledCalendarSelectedDate onClick={this.toggleCalendar}>
           <IconButton
             size={40}
             variant="secondary"

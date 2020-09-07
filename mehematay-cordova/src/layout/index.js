@@ -31,11 +31,11 @@ export const Index = () => {
         </Switch>
       </nav>
       <main>
-        <Switch>
-          <Container maxWidth="lg" disableGutters>
+        <Container maxWidth="lg" disableGutters>
+          <Switch>
             {routes.map(route => (<Route key={route.to} exact path={route.to} component={ route.component } />))}
-          </Container>
-        </Switch>
+          </Switch>
+        </Container>
       </main>
     </Router>
   );

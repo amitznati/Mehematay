@@ -3,6 +3,7 @@ import { Paper } from '@material-ui/core';
 import { SearchLocationProps } from './SearchLocation.types';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import MyLocationIcon from '@material-ui/icons/MyLocation';
+import EditLocationIcon from '@material-ui/icons/EditLocation';
 
 import Accordion from '../Accordion/Accordion';
 import SearchInput from '../SearchInput/SearchInput';
@@ -38,6 +39,11 @@ const useStyles = makeStyles((theme: Theme) =>
       color: 'white',
       height: '4rem',
       width: '4rem'
+    },
+    header: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
     }
   })
 );
@@ -72,12 +78,14 @@ const SearchLocation: React.FC<SearchLocationProps> = ({
   const toggleAccordion = (): void => {
     setIsOpen(!isOpen);
   };
-  const searchMyLocation = (): void => {
-    toggleAccordion();
+  const searchMyLocation = (e): void => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsOpen(false);
     onSearchMyLocation && onSearchMyLocation();
   };
   const selectLocation = (loc): void => {
-    toggleAccordion();
+    setIsOpen(false);
     onSelectLocation && onSelectLocation(loc);
   };
 
@@ -85,7 +93,11 @@ const SearchLocation: React.FC<SearchLocationProps> = ({
     <Paper>
       <Accordion
         header={
-          (selectedLocation && selectedLocation.formattedName) || 'no location'
+          <div className={classes.header}>
+            {(selectedLocation && selectedLocation.formattedName) ||
+              'no location'}
+            <EditLocationIcon />
+          </div>
         }
         isOpen={isOpen}
         toggleAccordion={toggleAccordion}
