@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Fab } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import { SearchLocationProps } from './SearchLocation.types';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import MyLocationIcon from '@material-ui/icons/MyLocation';
