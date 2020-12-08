@@ -73,14 +73,33 @@ class Calendar extends React.Component<
     const now = new Date();
     const heNow = new Hebcal.HDate();
     const heSelectedDate = new Hebcal.HDate(props.selectedDate);
+    let months = year.months;
+    let holidays = year.holidays;
+    let activeMonth = now.getMonth();
+    let nowMonthIndex = now.getMonth();
+    if (activeMonth === 11) {
+      months = [...months, ...new Hebcal.GregYear(months[0].year + 1).months];
+      holidays = {
+        ...holidays,
+        ...new Hebcal.GregYear(months[0].year + 1).holidays
+      };
+    } else if (activeMonth === 0) {
+      months = [...new Hebcal.GregYear(months[0].year - 1).months, ...months];
+      holidays = {
+        ...new Hebcal.GregYear(months[0].year - 1).holidays,
+        ...holidays
+      };
+      activeMonth = 12;
+      nowMonthIndex = 12;
+    }
     this.state = {
       calendarOpen: false,
-      activeMonth: now.getMonth(),
-      months: year.months,
-      holidays: year.holidays,
+      activeMonth,
+      months,
+      holidays,
       heNow,
       heSelectedDate,
-      nowMonthIndex: now.getMonth()
+      nowMonthIndex
     };
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.moveMonthUp = this.moveMonthUp.bind(this);
