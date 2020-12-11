@@ -22,7 +22,7 @@ const getStyledAccordion = (props): string => {
     padding: 2rem;
     box-shadow: 0 2px 4px rgba(0 ,0 ,0 , 0.3);
     background-color: ${getColor('primary', props)};
-    cursor: pointer;
+    cursor: default;
     .u-abs-center {
       ${absCenter}
       width: 75%;

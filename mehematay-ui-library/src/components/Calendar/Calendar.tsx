@@ -23,6 +23,7 @@ import {
   StyledCalendarDay,
   StyledCalendarDayName
 } from './Calendar.styles';
+import YearSelectModal from './YearSelectModal';
 
 const getEventText = (
   events: Array<HeEvent>,
@@ -65,6 +66,8 @@ class Calendar extends React.Component<
     heNow: HeDay;
     nowMonthIndex: number;
     heSelectedDate: HeDay;
+    yearSelectOpen: boolean;
+    monthSelectOpen: boolean;
   }
 > {
   constructor(props) {
@@ -94,6 +97,8 @@ class Calendar extends React.Component<
     }
     this.state = {
       calendarOpen: false,
+      yearSelectOpen: false,
+      monthSelectOpen: false,
       activeMonth,
       months,
       holidays,
@@ -305,10 +310,24 @@ class Calendar extends React.Component<
     this.props.onSelectDate(heNow.greg());
   }
 
+  onSelectYear = (year: string): void => {
+    console.log(year);
+    this.setState({ yearSelectOpen: false });
+  };
+
+  openYearModal = (): void => {
+    this.setState({ yearSelectOpen: true });
+  };
+
   render(): JSX.Element {
-    const { calendarOpen, activeMonth, months } = this.state;
+    const { calendarOpen, activeMonth, months, yearSelectOpen } = this.state;
     return (
       <StyledCalendarContainer>
+        <YearSelectModal
+          open={yearSelectOpen}
+          selectedYear={`${months[activeMonth].year}`}
+          onClose={this.onSelectYear}
+        />
         <StyledCalendarSelectedDate onClick={this.toggleCalendar}>
           <IconButton
             size={40}
@@ -342,7 +361,9 @@ class Calendar extends React.Component<
                   size={40}
                   className="arrow-up"
                 />
-                <span>{months[activeMonth].year}</span>
+                <span onClick={this.openYearModal}>
+                  {months[activeMonth].year}
+                </span>
                 <span className="calendar-header-text">
                   {monthsArrayTranslate[months[activeMonth].month - 1]}
                 </span>

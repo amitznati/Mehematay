@@ -10,7 +10,7 @@ export const StyledCalendarContainer = styled.div`
 export const StyledCalendarSelectedDate = styled.div`
   font-size: 2rem;
   text-align: center;
-  cursor: pointer;
+  cursor: default;
   color: ${(props): string => getColor('white', props)};
   display: flex;
   justify-content: space-between;
@@ -77,7 +77,7 @@ export const StyledCalendarHeader = styled.div`
     margin: 0 0 0 1rem;
   }
   .calendar-header-year {
-    cursor: pointer;
+    cursor: default;
   }
 `;
 
@@ -161,7 +161,6 @@ export const StyledCalendarDay = styled.div`
     }
   }
 
-
   ${(props): string =>
     props.isDisable
       ? `
@@ -171,7 +170,9 @@ export const StyledCalendarDay = styled.div`
   `
       : ''}
   ${(props): string =>
-    props.isNow ? `background-color: ${getColor('secondary', props)};` : ''}
+    props.isNow
+      ? `background-color: ${getColor('secondary', props)};`
+      : ''}
   ${(props): string =>
     props.isSelected ? `border: 3px solid ${getColor('primary', props)};` : ''}
 `;
