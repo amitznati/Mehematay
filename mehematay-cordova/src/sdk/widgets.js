@@ -1,5 +1,6 @@
 import DayTimes from '../screens/DayTimes';
 import SearchLocation from '../screens/SearchLocation';
-export const widgets = [DayTimes, SearchLocation];
+import ShabatAlarm from '../screens/ShabatAlarm';
+export const widgets = [DayTimes, SearchLocation, ShabatAlarm];
 
 export default widgets;

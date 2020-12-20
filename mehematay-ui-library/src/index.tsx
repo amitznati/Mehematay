@@ -16,5 +16,6 @@ export { default as SearchLocation } from './components/SearchLocation/SearchLoc
 export { default as SearchInput } from './components/SearchInput/SearchInput';
 export { default as SelectedDayInfo } from './components/SelectedDayInfo/SelectedDayInfo';
 export { default as Spinner } from './components/Spinner/Spinner';
+export { default as AlarmClockList } from './components/AlarmClock/AlarmClockList';
 export * from '@material-ui/core';
 export { hooks, MaterialIcons, calendarConstants };

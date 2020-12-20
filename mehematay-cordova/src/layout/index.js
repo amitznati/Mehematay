@@ -1,18 +1,18 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
-import {DayTimes} from '../screens';
+import {DayTimes, ShabatAlarm} from '../screens';
 import {AppBar, Container} from 'mehematay-ui-library';
 import * as logo from '../styles/assets/ic_launcher_round.png';
 
-const NearestPray = () => (<div>Nearest Pray</div>);
+// const NearestPray = () => (<div>Nearest Pray</div>);
 const About = () => (<div>About</div>);
 const Home = () => (<div>Home</div>);
 
 const routes = [
   { title: 'מאימתי', to: '/', component: Home, linkComponent: {comp: NavLink, props: {to: '/', exact: true}}},
   { title: 'זמני היום', to: '/day-times', component: DayTimes, linkComponent: {comp: NavLink, props: {to: '/day-times', exact: true}}},
-  { title: 'תפילה קרובה', to: '/nearest-pray', component: NearestPray, linkComponent: {comp: NavLink, props: {to: '/nearest-pray', exact: true}} },
+  { title: 'שעון מעורר שבת', to: '/shabat-alarms', component: ShabatAlarm, linkComponent: {comp: NavLink, props: {to: '/shabat-alarms', exact: true}} },
   { title: 'אודות', to: '/about', component: About, linkComponent: {comp: NavLink, props: {to: '/about', exact: true}} }
 ];
 const navigationLinks = routes.map(({title, to, linkComponent}) => ({
