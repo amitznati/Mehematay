@@ -10,7 +10,8 @@ const useStyles = makeStyles(() =>
     addIcon: {
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      marginTop: '2rem'
     }
   })
 );
