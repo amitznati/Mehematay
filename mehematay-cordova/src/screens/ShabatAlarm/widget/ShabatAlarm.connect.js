@@ -12,6 +12,8 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = () => ({
   updateAlarms: shabatAlarmApi.updateAlarms,
+  setAlarm: shabatAlarmApi.setAlarm,
+  cancelAlarm: shabatAlarmApi.cancelAlarm
 });
 
 export default connect(

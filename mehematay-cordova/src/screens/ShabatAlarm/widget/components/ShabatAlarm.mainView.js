@@ -4,13 +4,24 @@ import {AlarmClockList} from 'mehematay-ui-library';
 export default function ShabatAlarmMainView(props) {
   const {alarms, updateAlarms, setAlarm, cancelAlarm} = props;
   const addAlarm = () => {
+    let key = 1;
+    alarms.forEach((al) => {
+      if (al.key >= key) {
+        key = al.key + 1;
+      }
+    });
     const newAlarms = [...alarms, {
-      key: new Date().getTime(),
+      key,
       selectedDate: new Date(),
       isActive: false,
       seconds: '10'
     }];
     updateAlarms(newAlarms);
+  };
+  const handleAlarmChange = alarm => {
+    if (alarm.isActive && new Date() < new Date(alarm.selectedDate)) {
+      setAlarm(alarm);
+    }
   };
   const deleteAlarm = (alarm) => {
     if (alarm.isActive && new Date() < new Date(alarm.selectedDate)) {
@@ -24,6 +35,7 @@ export default function ShabatAlarmMainView(props) {
       if (alarm.key === key) {
         alarm.selectedDate = date;
       }
+      handleAlarmChange(alarm);
       return alarm;
     });
     updateAlarms(newAlarms);
@@ -42,13 +54,11 @@ export default function ShabatAlarmMainView(props) {
     });
     updateAlarms(newAlarms);
   };
-  const onSecondsChange = ({ key, isActive }, seconds) => {
+  const onSecondsChange = ({ key }, seconds) => {
     const newAlarms = alarms.map((alarm) => {
       if (alarm.key === key) {
         alarm.seconds = seconds;
-        if (isActive) {
-          setAlarm(alarm);
-        }
+        handleAlarmChange(alarm);
       }
       return alarm;
     });
