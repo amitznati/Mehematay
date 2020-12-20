@@ -7,14 +7,43 @@ export const ActionTypes = {
 export default class ShabatAlarmApi extends BaseApi {
   constructor(store, APIsInstances) {
     super(store, APIsInstances);
-    const existingAlarms = localStorage.getItem('alarms');
+    const existingAlarmsStr = localStorage.getItem('alarms');
+    const existingAlarms = existingAlarmsStr && JSON.parse(existingAlarmsStr);
     if (existingAlarms) {
-      this.dispatchStoreAction({type: ActionTypes.UPDATE_ALARMS, payload: JSON.parse(existingAlarms)});
+      const filteredAlarms = existingAlarms.map((alarm) => {
+        if (new Date() > new Date(alarm.selectedDate)) {
+          alarm.isActive = false;
+        }
+        return alarm;
+      });
+      this.dispatchStoreAction({type: ActionTypes.UPDATE_ALARMS, payload: filteredAlarms});
     }
   }
   updateAlarms = data => {
     this.dispatchStoreAction({type: ActionTypes.UPDATE_ALARMS, payload: data});
     localStorage.setItem('alarms', JSON.stringify(data));
+  };
+
+  setAlarm = alarm => {
+    if (window.WakeupPlugin) {
+      const date = new Date(alarm.selectedDate);
+      window.WakeupPlugin.setAlarm({
+        time: {
+          minute: date.getMinutes(),
+          hour: date.getHours()
+        },
+        seconds: alarm.seconds,
+        key: alarm.key
+      }, console.log, console.log);
+    }
+  };
+
+  cancelAlarm = alarm => {
+    if (window.WakeupPlugin) {
+      window.WakeupPlugin.cancelAlarm({
+        key: alarm.key
+      }, console.log, console.log);
+    }
   };
 
   getAlarmsSelector = () => {

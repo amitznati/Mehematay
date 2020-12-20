@@ -13,6 +13,9 @@ export default function ShabatAlarmMainView(props) {
     updateAlarms(newAlarms);
   };
   const deleteAlarm = (alarm) => {
+    if (alarm.isActive && new Date() < new Date(alarm.selectedDate)) {
+      cancelAlarm(alarm);
+    }
     const newAlarms = alarms.filter((a) => a.key !== alarm.key);
     updateAlarms(newAlarms);
   };
@@ -39,10 +42,13 @@ export default function ShabatAlarmMainView(props) {
     });
     updateAlarms(newAlarms);
   };
-  const onSecondsChange = ({ key }, seconds) => {
+  const onSecondsChange = ({ key, isActive }, seconds) => {
     const newAlarms = alarms.map((alarm) => {
       if (alarm.key === key) {
         alarm.seconds = seconds;
+        if (isActive) {
+          setAlarm(alarm);
+        }
       }
       return alarm;
     });
