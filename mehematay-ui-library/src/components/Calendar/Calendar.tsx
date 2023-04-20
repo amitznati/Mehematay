@@ -328,7 +328,12 @@ class Calendar extends React.Component<
           selectedYear={`${months[activeMonth].year}`}
           onClose={this.onSelectYear}
         />
-        <StyledCalendarSelectedDate onClick={this.toggleCalendar}>
+        <StyledCalendarSelectedDate
+          onClick={(e) => {
+            e.stopPropagation();
+            this.toggleCalendar();
+          }}
+        >
           <IconButton
             size={40}
             variant="secondary"
@@ -341,7 +346,10 @@ class Calendar extends React.Component<
               size={40}
               className="calendar-expand-icon__icon"
               iconSrc={ArrowIcon}
-              onClick={this.toggleCalendar}
+              onClick={(e) => {
+                e.stopPropagation();
+                this.toggleCalendar();
+              }}
             />
           </StyledCalendarExpandIcon>
         </StyledCalendarSelectedDate>
