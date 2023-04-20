@@ -31,6 +31,20 @@ const theme = {
 };
 
 export default function App() {
+  React.useEffect(() => {
+    if (window.cordova && window.cordova.plugins.permissions) {
+      const permissions = window.cordova.plugins.permissions;
+      const error = () => {
+        alert('Location permission is not turned on');
+      };
+
+      const success = ( status ) => {
+        if( !status.hasPermission ) error();
+      };
+
+      permissions.requestPermission(permissions.ACCESS_FINE_LOCATION, success, error);
+    }
+  });
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
