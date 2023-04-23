@@ -1,0 +1,51 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+                 xmlns:aapt="http://schemas.android.com/aapt">
+  <aapt:attr name="android:drawable">
+    <vector
+      android:width="300dp"
+      android:height="300dp"
+      android:viewportWidth="300"
+      android:viewportHeight="300">
+      <group android:scaleX="0.5" android:scaleY="0.5" android:translateX="70" android:translateY="70">
+        <path
+          android:name="gr"
+          android:pathData="M274.6,24.96L29.17,105.91L137.14,178.69L15.99,273.84L266.35,202.35L152.18,128.2L274.6,24.96Z">
+          <aapt:attr name="android:fillColor">
+            <gradient
+              android:startX="283.71"
+              android:startY="159.96"
+              android:endX="-3.26"
+              android:endY="157.94"
+              android:type="linear">
+              <item android:offset="0" android:color="#FFC90C0C"/>
+              <item android:offset="1" android:color="#FF262626"/>
+            </gradient>
+          </aapt:attr>
+        </path>
+      </group>
+
+    </vector>
+  </aapt:attr>
+  <target android:name="gr">
+    <aapt:attr name="android:animation">
+      <set android:ordering="together">
+        <objectAnimator
+          android:duration="1500"
+          android:propertyName="fillAlpha"
+          android:startOffset="0"
+          android:valueFrom="0"
+          android:valueTo="1"
+          android:valueType="floatType"
+          android:interpolator="@android:interpolator/linear" />
+        <objectAnimator
+          android:duration="1500"
+          android:propertyName="fillAlpha"
+          android:startOffset="2500"
+          android:valueFrom="1"
+          android:valueTo="0"
+          android:valueType="floatType"
+          android:interpolator="@android:interpolator/linear" />
+      </set>
+    </aapt:attr>
+  </target>
+</animated-vector>
