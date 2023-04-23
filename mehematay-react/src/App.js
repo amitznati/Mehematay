@@ -43,6 +43,7 @@ export default function App() {
       };
 
       permissions.requestPermission(permissions.ACCESS_FINE_LOCATION, success, error);
+      permissions.requestPermission(permissions.WAKE_LOCK, success, error);
     }
   });
   return (
