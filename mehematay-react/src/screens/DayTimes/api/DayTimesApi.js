@@ -1,6 +1,7 @@
+import 'events';
 import moment from 'moment-timezone';
 import Hebcal from 'hebcal';
-import { calendarConstants } from 'mehematay-ui-library';
+import { calendarConstants } from '../../../components';
 import BaseApi from '../../../sdk/BaseApi';
 import selectors from './DayTimesSelectors';
 

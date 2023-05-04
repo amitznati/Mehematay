@@ -1,6 +1,5 @@
-import {createStore} from 'redux';
+import {legacy_createStore as createStore} from 'redux';
 import {combineReducers} from 'redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
 import widgets from './widgets';
 import baseReducer from './baseReducer';
 
@@ -13,7 +12,7 @@ const createStoreInstance = () => {
   reducerMap.general = baseReducer;
   return createStore(
     combineReducers(reducerMap),
-    process.env.NODE_ENV && composeWithDevTools(),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
 };
 export const getStoreInstance = () => {
