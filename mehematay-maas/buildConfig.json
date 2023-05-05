@@ -77,7 +77,7 @@
       "customEntryPoint": "index.html",
       "ContentProtectionPubKeyPath": "www/cert/pubkey.pem",
       "usesCleartextTraffic": true,
-      "isToGenSourceProject": true,
+      "isToGenSourceProject": false,
       "AndroidWindowSplashScreenAnimatedIcon": "res/ic_launcher.png",
       "AndroidWindowSplashScreenAnimationDuration": 3000,
       "StatusBarOverlaysWebView": false,

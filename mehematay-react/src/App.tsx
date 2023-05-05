@@ -66,12 +66,15 @@ function App() {
 
       const success = ( status ) => {
         if( !status.hasPermission ) error();
+        else {
+          console.log('Location permission granted!');
+        }
       };
 
       permissions.requestPermission(permissions.ACCESS_FINE_LOCATION, success, error);
       permissions.requestPermission(permissions.WAKE_LOCK, success, error);
     }
-  });
+  },[]);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseLine />

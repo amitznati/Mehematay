@@ -1,6 +1,6 @@
 import 'date-fns';
 import React from 'react';
-import { Fab, Switch } from '@mui/material';
+import {Fab, Switch, ThemeProvider} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
@@ -46,14 +46,16 @@ const AlarmClockItem: React.FC<AlarmClockItemProps> = ({
         <DeleteIcon />
       </Fab>
       <div style={{width: '10rem'}}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <MobileTimePicker
-            ampm={false}
-            label="שעה"
-            value={selectedDate}
-            onChange={handleDateChange}
-          />
-        </LocalizationProvider>
+        <ThemeProvider theme={{direction: 'ltr'}}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <MobileTimePicker
+              ampm={false}
+              label="שעה"
+              value={selectedDate}
+              onChange={handleDateChange}
+            />
+          </LocalizationProvider>
+        </ThemeProvider>
       </div>
       <SimpleSelect
         options={secondsOptions}

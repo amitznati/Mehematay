@@ -12,7 +12,7 @@ export default function ShabatAlarmMainView(props) {
     });
     const newAlarms = [...alarms, {
       key,
-      selectedDate: new Date(),
+      selectedDate: new Date().getTime(),
       isActive: false,
       seconds: '10'
     }];
@@ -33,7 +33,7 @@ export default function ShabatAlarmMainView(props) {
   const handleDateChange = ({ key }, date) => {
     const newAlarms = alarms.map((alarm) => {
       if (alarm.key === key) {
-        alarm.selectedDate = date;
+        alarm.selectedDate = new Date(date).getTime();
       }
       handleAlarmChange(alarm);
       return alarm;
