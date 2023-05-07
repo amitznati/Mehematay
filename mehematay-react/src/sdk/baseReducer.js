@@ -16,11 +16,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         spinnerOn: [
           ...state.spinnerOn,
-          type.substr(0, type.indexOf(types.REQUEST)),
+          type.slice(0, type.indexOf(types.REQUEST)),
         ],
       };
     } else if (type.endsWith(types.FAILURE) || type.endsWith(types.SUCCESS)) {
-      const typeName = type.substr(0, type.length - 8);
+      const typeName = type.slice(0, type.length - 8);
       newState = {
         ...state,
         spinnerOn: [...state.spinnerOn.filter(s => s !== typeName)],
