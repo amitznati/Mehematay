@@ -25,6 +25,7 @@ import {
   StyledCalendarDayName
 } from './Calendar.styles';
 import YearSelectModal from './YearSelectModal';
+import defaultDayjs from "dayjs";
 
 const getEventText = (
   events: Array<HeEvent>,
@@ -73,40 +74,6 @@ class Calendar extends React.Component<
 > {
   constructor(props) {
     super(props);
-    const year = new Hebcal.GregYear();
-    const now = new Date();
-    const heNow = new Hebcal.HDate();
-    const heSelectedDate = new Hebcal.HDate(props.selectedDate);
-    let months = year.months;
-    let holidays = year.holidays;
-    let activeMonth = now.getMonth();
-    let nowMonthIndex = now.getMonth();
-    if (activeMonth === 11) {
-      months = [...months, ...new Hebcal.GregYear(months[0].year + 1).months];
-      holidays = {
-        ...holidays,
-        ...new Hebcal.GregYear(months[0].year + 1).holidays
-      };
-    } else if (activeMonth === 0) {
-      months = [...new Hebcal.GregYear(months[0].year - 1).months, ...months];
-      holidays = {
-        ...new Hebcal.GregYear(months[0].year - 1).holidays,
-        ...holidays
-      };
-      activeMonth = 12;
-      nowMonthIndex = 12;
-    }
-    this.state = {
-      calendarOpen: false,
-      yearSelectOpen: false,
-      monthSelectOpen: false,
-      activeMonth,
-      months,
-      holidays,
-      heNow,
-      heSelectedDate,
-      nowMonthIndex
-    };
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.moveMonthUp = this.moveMonthUp.bind(this);
     this.moveMonthDown = this.moveMonthDown.bind(this);
@@ -119,6 +86,26 @@ class Calendar extends React.Component<
     this.renderCalendarMonth = this.renderCalendarMonth.bind(this);
     this.renderDay = this.renderDay.bind(this);
     this.setDateToNow = this.setDateToNow.bind(this);
+    this.getUpdateState = this.getUpdateState.bind(this);
+    const {
+      activeMonth,
+      months,
+      holidays,
+      heSelectedDate,
+      nowMonthIndex
+    } = this.getUpdateState(new Date());
+    const heNow = new Hebcal.HDate();
+    this.state = {
+      calendarOpen: false,
+      yearSelectOpen: false,
+      monthSelectOpen: false,
+      activeMonth,
+      months,
+      holidays,
+      heNow,
+      heSelectedDate,
+      nowMonthIndex
+    };
   }
 
   componentDidUpdate(prevProps: Readonly<CalendarProps>): void {
@@ -310,9 +297,47 @@ class Calendar extends React.Component<
     this.props.onSelectDate(heNow.greg());
   }
 
-  onSelectYear = (year: string): void => {
-    console.log(year);
+  getUpdateState(newDate: Date) {
+    const year = new Hebcal.GregYear(newDate.getFullYear());
+    const now = new Date(newDate);
+    const heSelectedDate = new Hebcal.HDate(newDate);
+    let months = year.months;
+    let holidays = year.holidays;
+    let activeMonth = now.getMonth();
+    let nowMonthIndex = now.getMonth();
+    if (activeMonth === 11) {
+      months = [...months, ...new Hebcal.GregYear(months[0].year + 1).months];
+      holidays = {
+        ...holidays,
+        ...new Hebcal.GregYear(months[0].year + 1).holidays
+      };
+    } else if (activeMonth === 0) {
+      months = [...new Hebcal.GregYear(months[0].year - 1).months, ...months];
+      holidays = {
+        ...new Hebcal.GregYear(months[0].year - 1).holidays,
+        ...holidays
+      };
+      activeMonth = 12;
+      nowMonthIndex = 12;
+    }
+    return {
+      activeMonth,
+      months,
+      holidays,
+      heSelectedDate,
+      nowMonthIndex
+    };
+  }
+
+  onSelectYear = (date: defaultDayjs.Dayjs | null): void => {
     this.setState({ yearSelectOpen: false });
+    if (date) {
+      this.props.onSelectDate(date.toDate());
+      const updateState = this.getUpdateState(date.toDate())
+      this.setState({
+        ...updateState
+      });
+    }
   };
 
   openYearModal = (): void => {
@@ -325,7 +350,7 @@ class Calendar extends React.Component<
       <StyledCalendarContainer>
         <YearSelectModal
           open={yearSelectOpen}
-          selectedYear={`${months[activeMonth].year}`}
+          selectedDate={this.props.selectedDate}
           onClose={this.onSelectYear}
         />
         <StyledCalendarSelectedDate
@@ -369,12 +394,14 @@ class Calendar extends React.Component<
                   size={40}
                   className="arrow-up"
                 />
-                <span onClick={this.openYearModal}>
-                  {months[activeMonth].year}
-                </span>
-                <span className="calendar-header-text">
-                  {monthsArrayTranslate[months[activeMonth].month - 1]}
-                </span>
+                <div className="date-modal-wrapper" onClick={this.openYearModal}>
+                  <span>
+                    {months[activeMonth].year}
+                  </span>
+                  <span className="calendar-header-text">
+                    {monthsArrayTranslate[months[activeMonth].month - 1]}
+                  </span>
+                </div>
                 <IconButton
                   onClick={this.moveMonthDown}
                   iconSrc={ArrowIcon}

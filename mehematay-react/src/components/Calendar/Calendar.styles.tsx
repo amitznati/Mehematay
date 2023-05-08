@@ -70,8 +70,13 @@ export const StyledCalendarHeader = styled.div`
         transform: rotate(180deg);
       }
     }
-    .calendar-header-text {
+    .date-modal-wrapper {
+      cursor: pointer;
+      .calendar-header-text {
+        margin-left: 1rem;
+      }
     }
+    
   }
   .calendar-header-month-he {
     margin: 0 0 0 1rem;

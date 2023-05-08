@@ -10,9 +10,17 @@ const routes = [
 ];
 export default function AppBarWrapper() {
   const {pathname} = useLocation();
-  const currentPage = routes.find(r => r.to === pathname) || {};
-  const title = currentPage.title;
+  let title = 'מאימתי';
+  const navigationLinks = routes.map(r => {
+      if (pathname === r.to) {
+          r.active = true;
+          title = r.title;
+      } else {
+          r.active = false;
+      }
+      return r;
+  })
   return (
-    <AppBar logoSrc={logo} title={title} navigationLinks={routes} />
+    <AppBar logoSrc={logo} title={title} navigationLinks={navigationLinks} />
   )
 }

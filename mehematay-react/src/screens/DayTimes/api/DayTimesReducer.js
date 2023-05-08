@@ -2,11 +2,11 @@ import {ActionTypes} from './DayTimesApi';
 const navigationDate = new Date();
 navigationDate.setHours(6);
 const initialState = {
-  selectedDate: new Date(),
+  selectedDate: new Date().toString(),
   dayTimes: [],
   locationName: '',
   loadCurrentLocationTimesError: '',
-  navigationDate,
+  navigationDate: navigationDate.toString(),
 };
 // eslint-disable-next-line no-unused-vars
 const SUCCESS = '_SUCCESS';

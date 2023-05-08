@@ -1,5 +1,4 @@
-import {legacy_createStore as createStore} from 'redux';
-import {combineReducers} from 'redux';
+import {configureStore} from '@reduxjs/toolkit';
 import widgets from './widgets';
 import baseReducer from './baseReducer';
 
@@ -10,10 +9,9 @@ const createStoreInstance = () => {
     reducerMap[widget.config.sliceName] = widget.reducer;
   });
   reducerMap.general = baseReducer;
-  return createStore(
-    combineReducers(reducerMap),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+  return configureStore({
+      reducer: reducerMap
+  });
 };
 export const getStoreInstance = () => {
   if (!storeInstance) {
@@ -43,3 +41,7 @@ export default {
   getStoreInstance,
   getInstance,
 };
+window.mehematay = {
+    getStoreInstance,
+    getInstance,
+}

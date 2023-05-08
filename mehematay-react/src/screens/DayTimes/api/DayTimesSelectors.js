@@ -41,7 +41,7 @@ export const getLoadCurrentLocationTimesErrorSelector = createSelector(
 export const getSelectedDateSelector = createSelector(
   sliceSelector,
   slice => {
-    return slice.selectedDate;
+    return new Date(slice.selectedDate);
   },
 );
 

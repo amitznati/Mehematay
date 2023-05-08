@@ -251,7 +251,7 @@ export default class DayTimesApi extends BaseApi {
   setSelectedDate = (selectedDate) => {
     this.dispatchStoreAction({
       type: ActionTypes.SET_SELECTED_DATE,
-      payload: selectedDate,
+      payload: selectedDate.toString(),
     });
   }
 

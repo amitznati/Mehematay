@@ -45,7 +45,7 @@ const styleNav = (props): string => `
     line-height: 1;
     font-weight: 300;
     ${
-      props.active &&
+      props.active === 'true' &&
       `
     background-position: 100%;
     color: ${getColor(props.textColorHover || 'primary', props)};
@@ -71,34 +71,14 @@ const styleNav = (props): string => `
     box-shadow: 0 0.2rem 0 rgba(0, 0, 0, 0.4);
   }
 `;
-// const StyledNavigationLink = styled.a.attrs((props) => ({
-//   href: props.to,
-//   'aria-current': props.active ? 'page' : ''
-// }))`
-//   ${(props): string => styleNav(props)}
-// `;
 
 const StyledNavLink = styled(NavLink)((props) => styleNav(props));
 
 const NavigationLink: React.FC<NavigationLinkProps> = ({
-  active,
+  active = false,
   ...rest
 }) => {
-  // if (linkComponent) {
-  //   // const LinkComp = linkComponent.comp;
-  //   const LinkComp = styled(linkComponent.comp)`
-  //     ${(props): string => styleNav({ ...props, ...rest, active })}
-  //   `;
-  //   return (
-  //     <LinkComp
-  //       {...linkComponent.props}
-  //       className={[linkComponent.props.className, rest.className].join(' ')}
-  //     >
-  //       {rest.children}
-  //     </LinkComp>
-  //   );
-  // }
-  return <StyledNavLink aria-current="page" {...rest} active={active} />;
+  return <StyledNavLink aria-current="page" {...rest} active={active.toString()} />
 };
 
 export default NavigationLink;
