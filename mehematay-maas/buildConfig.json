@@ -67,7 +67,7 @@
     "ContentUpdateEnabled": false,
     "ContentProtectionEnable": false,
     "WKWebViewOnly": true,
-    "SplashScreenDelay": 3000,
+    "SplashScreenDelay": 1000,
     "android": {
       "minSdkVersion": 26,
       "AndroidXEnabled": true,
